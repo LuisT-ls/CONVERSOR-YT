@@ -1,0 +1,152 @@
+/* assets/css/modules/components/cards.css */
+
+.card {
+  border: none;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-medium);
+  background-color: var(--white);
+}
+
+.card-body {
+  padding: 1.75rem;
+}
+
+.card.shadow {
+  box-shadow: var(--shadow-md);
+}
+
+.card.shadow:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-5px);
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--light-gray);
+  padding: 1.5rem 1.75rem;
+}
+
+/* Estilização das entradas de formulário */
+.form-control,
+.form-select {
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-md);
+  border: 2px solid var(--light-gray);
+  transition: all var(--transition-medium);
+  font-size: 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.1);
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--dark-gray);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form-text {
+  color: var(--medium-gray);
+}
+
+.input-group-text {
+  background-color: var(--lighter-gray);
+  border: 2px solid var(--light-gray);
+  border-right: none;
+  color: var(--medium-gray);
+}
+
+.input-group .form-control {
+  border-left: none;
+}
+
+/* Card do resultado */
+#result-container .card {
+  transition: all var(--transition-medium);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+#result-container.show .card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Thumbnail do vídeo */
+#video-thumbnail {
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-medium);
+}
+
+#video-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+/* Status de conversão */
+#conversion-status {
+  background-color: rgba(52, 152, 219, 0.1);
+  border-left: 4px solid var(--info);
+  border-radius: var(--border-radius-md);
+}
+
+#download-container {
+  transition: all var(--transition-medium);
+}
+
+/* Estilização para o efeito de seleção */
+.form-control::selection,
+.btn::selection {
+  background-color: var(--primary-light);
+  color: var(--white);
+}
+
+/* Estilização para botões de rádio (formatos) */
+.format-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.format-option {
+  flex: 1;
+  min-width: 100px;
+}
+
+.format-option label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border: 2px solid var(--light-gray);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-medium);
+  cursor: pointer;
+}
+
+.format-option label:hover {
+  border-color: var(--primary-light);
+  transform: translateY(-3px);
+}
+
+.format-option input:checked + label {
+  border-color: var(--primary);
+  background-color: rgba(255, 0, 0, 0.05);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.format-option i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.format-option .format-name {
+  font-weight: 600;
+}

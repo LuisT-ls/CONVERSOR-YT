@@ -1,162 +1,154 @@
 /* assets/css/modules/components/cards.css */
 
+/* Estilos gerais para cartões */
 .card {
   border: none;
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
+  border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
+  transition: var(--transition-medium);
+  overflow: hidden;
+  background-color: var(--white);
 }
 
 .card:hover {
+  transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
 }
 
 .card-body {
-  padding: 1.75rem;
+  padding: var(--space-lg);
 }
 
-.card.shadow {
-  box-shadow: var(--shadow-md);
+/* Card do formulário principal */
+#converter-form .card {
+  border-top: 4px solid var(--primary);
+  position: relative;
+  z-index: 1;
 }
 
-.card.shadow:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-5px);
+#converter-form .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: -1;
 }
 
-.card-header {
-  background-color: transparent;
-  border-bottom: 1px solid var(--light-gray);
-  padding: 1.5rem 1.75rem;
+/* Card de resultado */
+#result-container {
+  transition: all 0.3s ease;
 }
 
-/* Estilização das entradas de formulário */
-.form-control,
-.form-select {
-  padding: 0.75rem 1rem;
-  border-radius: var(--border-radius-md);
-  border: 2px solid var(--light-gray);
-  transition: all var(--transition-medium);
-  font-size: 1rem;
-}
-
-.form-control:focus,
-.form-select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.1);
-}
-
-.form-label {
-  font-weight: 600;
-  color: var(--dark-gray);
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-}
-
-.form-text {
-  color: var(--medium-gray);
-}
-
-.input-group {
-  box-shadow: var(--shadow-sm);
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-}
-
-.input-group-text {
-  background-color: var(--lighter-gray);
-  border: 2px solid var(--light-gray);
-  border-right: none;
-  color: var(--medium-gray);
-}
-
-.input-group .form-control {
-  border-left: none;
-}
-
-/* Card do resultado */
 #result-container .card {
-  transition: all var(--transition-medium);
-  opacity: 0;
-  transform: translateY(20px);
+  border-left: 4px solid var(--primary);
+  background: linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0.03) 0%,
+    rgba(255, 255, 255, 1) 50%
+  );
+  animation: fadeIn 0.5s ease forwards;
 }
 
-#result-container.show .card {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Thumbnail do vídeo */
+/* Personalização da miniatura de vídeo */
 #video-thumbnail {
   border-radius: var(--border-radius-md);
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-medium);
+  transition: var(--transition-medium);
 }
 
-#video-thumbnail:hover {
+#result-container .card:hover #video-thumbnail {
   transform: scale(1.05);
 }
 
 /* Status de conversão */
 #conversion-status {
-  background-color: rgba(52, 152, 219, 0.1);
   border-left: 4px solid var(--info);
-  border-radius: var(--border-radius-md);
+  background-color: rgba(52, 152, 219, 0.1);
 }
 
+/* Container de download */
 #download-container {
-  transition: all var(--transition-medium);
+  animation: pulse 2s infinite;
 }
 
-/* Estilização para o efeito de seleção */
-.form-control::selection,
-.btn::selection {
-  background-color: var(--primary-light);
-  color: var(--white);
+#download-link {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  padding: 0.8rem 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  z-index: 1;
 }
 
-/* Estilização para botões de rádio (formatos) */
-.format-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+#download-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 168, 83, 0.3);
 }
 
-.format-option {
-  flex: 1;
-  min-width: 100px;
+#download-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+  z-index: -1;
 }
 
-.format-option label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  border: 2px solid var(--light-gray);
-  border-radius: var(--border-radius-md);
-  transition: all var(--transition-medium);
-  cursor: pointer;
+#download-link:hover::after {
+  left: 100%;
 }
 
-.format-option label:hover {
-  border-color: var(--primary-light);
-  transform: translateY(-3px);
-}
-
-.format-option input:checked + label {
+/* Estilos complementares para elementos dentro dos cards */
+.card input:focus,
+.card select:focus {
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.1);
   border-color: var(--primary);
-  background-color: rgba(255, 0, 0, 0.05);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
 }
 
-.format-option i {
-  font-size: 2rem;
-  margin-bottom: 10px;
-  color: var(--primary);
+.card .btn-primary {
+  background: linear-gradient(
+    145deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
+  border: none;
+  box-shadow: 0 4px 6px rgba(255, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
-.format-option .format-name {
-  font-weight: 600;
+.card .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 0, 0, 0.3);
+}
+
+.card .input-group-text {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+}
+
+/* Efeito para botão de colar */
+#paste-btn {
+  transition: all 0.2s ease;
+}
+
+#paste-btn:hover {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
 }

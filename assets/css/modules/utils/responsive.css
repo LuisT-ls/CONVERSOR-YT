@@ -65,4 +65,12 @@
     height: 70px;
     font-size: 1.5rem;
   }
+
+  .card-body {
+    padding: var(--space-md);
+  }
+
+  #video-thumbnail {
+    width: 100px !important;
+  }
 }

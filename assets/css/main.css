@@ -6,46 +6,15 @@
 
 @import 'modules/components/buttons.css';
 @import 'modules/components/cards.css';
+@import 'modules/components/modal.css';
 
 @import 'modules/utils/animations.css';
 @import 'modules/utils/variables.css';
+@import 'modules/utils/responsive.css';
 
 @import 'modules/features/features.css';
 
-:root {
-  --primary-color: #4285f4;
-  --primary-light: #7baaf7;
-  --primary-dark: #2b68d6;
-  --secondary-color: #34a853;
-  --secondary-light: #5bc77c;
-  --secondary-dark: #268c3f;
-  --danger-color: #ea4335;
-  --accent-color: #fbbc05;
-  --dark-color: #212121;
-  --dark-gray: #303030;
-  --gray: #757575;
-  --light-gray: #bdbdbd;
-  --lighter-gray: #f5f5f5;
-  --light-color: #f8f9fa;
-  --white: #ffffff;
-
-  /* Dimensões e espaçamentos */
-  --border-radius-sm: 4px;
-  --border-radius-md: 8px;
-  --border-radius-lg: 12px;
-  --border-radius-xl: 20px;
-
-  /* Sombras */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
-
-  /* Transições */
-  --transition-fast: 0.2s ease;
-  --transition-medium: 0.3s ease;
-  --transition-slow: 0.5s ease;
-}
-
+/* Estilos gerais */
 body {
   font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial,
     sans-serif;
@@ -61,125 +30,19 @@ main {
   flex: 1 0 auto;
 }
 
-.feature-icon {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 #result-container {
   transition: all 0.3s ease;
 }
 
-/* Animação para o botão converter */
-.btn-primary {
-  transition: all 0.3s ease;
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(66, 133, 244, 0.3);
-  background-color: var(--primary-dark);
-  border-color: var(--primary-dark);
-}
-
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  transform: scale(0) translate(-50%, -50%);
-  transform-origin: left top;
-  opacity: 0;
-}
-
-.btn-primary:active::after {
-  animation: ripple 0.6s ease-out;
-}
-
-@keyframes ripple {
-  0% {
-    transform: scale(0) translate(-50%, -50%);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(20) translate(-50%, -50%);
-    opacity: 0;
-  }
-}
-
-/* Personalização para os botões de formato */
-.btn-check:checked + .btn-outline-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  box-shadow: 0 2px 8px rgba(66, 133, 244, 0.2);
-}
-
-.btn-outline-primary {
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-  transition: all 0.3s ease;
-}
-
-.btn-outline-primary:hover {
-  background-color: var(--primary-light);
-  border-color: var(--primary-light);
-}
-
-/* Estilo para o card principal */
-.card {
-  border: none;
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-.card-body {
-  padding: 2rem;
-}
-
 /* Efeito de foco para o campo de URL */
 #youtube-url:focus {
-  border-color: var(--primary-color);
+  border-color: var(--primary);
   box-shadow: 0 0 0 0.25rem rgba(66, 133, 244, 0.25);
-}
-
-.form-control {
-  border-radius: var(--border-radius-md);
-  padding: 0.75rem 1rem;
-  border: 1px solid #ddd;
-  transition: all 0.3s ease;
-}
-
-.input-group {
-  box-shadow: var(--shadow-sm);
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-}
-
-.input-group-text {
-  background-color: #fff;
-  border-color: #ddd;
 }
 
 /* Personalização para resultados */
 #result-container .card {
-  border-left: 4px solid var(--primary-color);
+  border-left: 4px solid var(--primary);
 }
 
 #video-thumbnail {
@@ -197,62 +60,4 @@ main {
 #download-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(52, 168, 83, 0.3);
-}
-
-/* Estilo para o modal de erro */
-.modal-content {
-  border: none;
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-}
-
-.modal-header {
-  border-bottom: none;
-  padding: 1.5rem;
-}
-
-.modal-footer {
-  border-top: none;
-  padding: 1.5rem;
-}
-
-/* Animações para elementos carregados */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease forwards;
-}
-
-/* Responsividade para dispositivos móveis */
-@media (max-width: 576px) {
-  .btn-check + .btn {
-    padding: 0.5rem;
-    font-size: 0.85rem;
-  }
-
-  .card-body {
-    padding: 1.5rem;
-  }
-
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  .lead {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
 }

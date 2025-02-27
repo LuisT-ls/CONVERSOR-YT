@@ -16,11 +16,13 @@
 
   /* Tons neutros */
   --dark: #222222;
-  --dark-gray: #333333;
+  --dark-gray: #303030;
   --medium-gray: #666666;
-  --light-gray: #e0e0e0;
+  --light-gray: #bdbdbd;
   --lighter-gray: #f5f5f5;
+  --light-color: #f8f9fa;
   --white: #ffffff;
+  --gray: #757575;
 
   /* Cores para feedback */
   --success: #2ecc71;

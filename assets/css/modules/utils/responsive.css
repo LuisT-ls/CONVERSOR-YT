@@ -1,0 +1,68 @@
+@media (max-width: 576px) {
+  .btn-check + .btn {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .footer-social ul {
+    flex-direction: row;
+    gap: 0.8rem;
+  }
+
+  .footer-social a {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .site-footer {
+    padding: 2.5rem 0 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .site-title {
+    font-size: 2rem;
+  }
+
+  .site-title i {
+    font-size: 2.25rem;
+  }
+
+  .site-description {
+    font-size: 1rem;
+  }
+
+  .feature-card {
+    margin-bottom: 2rem;
+  }
+
+  .feature-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.5rem;
+  }
+}

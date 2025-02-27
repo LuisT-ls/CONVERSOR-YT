@@ -33,10 +33,10 @@ Um aplicativo web que permite converter vídeos do YouTube para vários formatos
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/conversor-yt.git
+git clone https://github.com/LuisT-ls/CONVERSOR-YT.git
 
 # Entre no diretório
-cd conversor-yt
+cd CONVERSOR-YT
 
 # Se estiver usando Node.js com npm para desenvolvimento
 npm install

@@ -4,8 +4,12 @@
   border: none;
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  transition: all var(--transition-medium);
-  background-color: var(--white);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 .card-body {
@@ -52,6 +56,12 @@
 
 .form-text {
   color: var(--medium-gray);
+}
+
+.input-group {
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
 }
 
 .input-group-text {

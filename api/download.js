@@ -1,10 +1,8 @@
 // api/download.js
 const ytdl = require('ytdl-core')
-const stream = require('stream')
-const { promisify } = require('util')
-const pipeline = promisify(stream.pipeline)
+import { pipeline } from 'stream/promises'
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // Configurar CORS para preflight
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Credentials', true)
@@ -51,7 +49,14 @@ module.exports = async (req, res) => {
     // estamos fornecendo o áudio bruto que o navegador pode reproduzir
 
     // Enviar o stream para o cliente
-    await pipeline(videoStream, res)
+    try {
+      await pipeline(videoStream, res)
+    } catch (error) {
+      console.error('Streaming error:', error)
+      if (!res.headersSent) {
+        res.status(500).json({ error: 'Erro durante o streaming' })
+      }
+    }
   } catch (error) {
     console.error('Download error:', error)
 

@@ -1,8 +1,5 @@
 /**
  * Módulo UI - Gerencia a interface do usuário
- *
- * Este módulo contém funções para manipular a UI da aplicação,
- * incluindo exibição de resultados, mensagens de erro e animações.
  */
 
 export class UI {
@@ -130,7 +127,10 @@ export class UI {
   showDownloadButton(url, filename) {
     const downloadLink = document.getElementById('download-link')
     downloadLink.href = url
-    downloadLink.setAttribute('download', filename)
+
+    // Não usar o atributo download para permitir que o navegador abra diretamente
+    // No caso de vídeos, isso permitirá que o navegador os reproduza
+    // Para áudio, pode abrir o player de áudio do navegador
 
     this.downloadContainer.hidden = false
     this.downloadContainer.classList.add('animate-fade-in')
@@ -138,13 +138,9 @@ export class UI {
     // Adicionar ouvinte de eventos para rastreamento de análise
     downloadLink.addEventListener('click', () => {
       console.log(`Download started: ${filename}`)
-
-      // Revogar a URL do objeto após o download iniciar
-      // Isso libera a memória usada pelo blob
-      setTimeout(() => {
-        URL.revokeObjectURL(url)
-        console.log('Blob URL revoked')
-      }, 1000)
+      // Abrir em uma nova aba
+      window.open(url, '_blank')
+      return false // Prevenir o comportamento padrão
     })
   }
 

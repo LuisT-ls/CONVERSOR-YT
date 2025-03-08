@@ -15,7 +15,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "ytdl-core": "^4.11.5"
+  "dlinfo": "^0.3.0",
+  "youtube-dl-exec": "^2.5.3"
   },
   "devDependencies": {
     "vercel": "^33.0.0"

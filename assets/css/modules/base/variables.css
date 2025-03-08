@@ -1,0 +1,150 @@
+/* 
+* Conversor YouTube - Variáveis CSS
+* Contém todas as variáveis de cor, tipografia, espaçamentos, etc.
+*/
+
+:root {
+  /* Cores primárias */
+  --color-primary: #ff0000;
+  --color-primary-dark: #cc0000;
+  --color-primary-light: #ff3333;
+
+  /* Cores secundárias */
+  --color-secondary: #2c3e50;
+  --color-secondary-dark: #1a252f;
+  --color-secondary-light: #34495e;
+
+  /* Cores de ação */
+  --color-success: #28a745;
+  --color-success-dark: #218838;
+  --color-success-light: #48c774;
+
+  --color-info: #17a2b8;
+  --color-info-dark: #138496;
+  --color-info-light: #1fc8db;
+
+  --color-warning: #ffc107;
+  --color-warning-dark: #e0a800;
+  --color-warning-light: #ffdd57;
+
+  --color-danger: #dc3545;
+  --color-danger-dark: #c82333;
+  --color-danger-light: #f14668;
+
+  /* Cores neutras */
+  --color-black: #000;
+  --color-dark: #212529;
+  --color-gray-darker: #343a40;
+  --color-gray-dark: #495057;
+  --color-gray: #6c757d;
+  --color-gray-light: #adb5bd;
+  --color-gray-lighter: #dee2e6;
+  --color-white-dark: #f8f9fa;
+  --color-white: #fff;
+
+  /* Cores do YouTube */
+  --color-youtube: #ff0000;
+  --color-youtube-dark: #cc0000;
+
+  /* Sombras */
+  --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  --shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+
+  /* Tipografia */
+  --font-family-base: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-family-headings: 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+
+  --font-size-base: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3rem;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-base: 1.5;
+  --line-height-loose: 1.75;
+
+  /* Espaçamentos */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+
+  /* Bordas */
+  --border-radius-sm: 0.2rem;
+  --border-radius: 0.375rem;
+  --border-radius-lg: 0.5rem;
+  --border-radius-xl: 1rem;
+  --border-radius-pill: 50rem;
+  --border-radius-circle: 50%;
+
+  --border-width-thin: 1px;
+  --border-width-base: 2px;
+  --border-width-thick: 4px;
+
+  /* Transições */
+  --transition-speed-fast: 0.15s;
+  --transition-speed-base: 0.3s;
+  --transition-speed-slow: 0.5s;
+  --transition-timing: ease-in-out;
+
+  /* Breakpoints */
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1400px;
+
+  /* Container */
+  --container-padding: 1rem;
+  --container-max-width: 1200px;
+
+  /* Z-index */
+  --z-negative: -1;
+  --z-1: 100;
+  --z-2: 200;
+  --z-3: 300;
+  --z-4: 400;
+  --z-5: 500;
+  --z-max: 9999;
+
+  /* Theme */
+  --body-bg: var(--color-white);
+  --body-color: var(--color-dark);
+  --heading-color: var(--color-secondary);
+  --link-color: var(--color-primary);
+  --link-hover-color: var(--color-primary-dark);
+}
+
+/* Variáveis para o modo escuro */
+[data-theme='dark'] {
+  --body-bg: var(--color-gray-darker);
+  --body-color: var(--color-white-dark);
+  --heading-color: var(--color-white);
+  --link-color: var(--color-primary-light);
+  --link-hover-color: var(--color-primary);
+}

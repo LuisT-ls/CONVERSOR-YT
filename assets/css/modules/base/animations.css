@@ -1,0 +1,225 @@
+/* 
+* Conversor YouTube - Animações
+* Definição de keyframes e classes de animação
+*/
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Classes de animação */
+.animate-fade-in {
+  animation: fadeIn var(--transition-speed-base) var(--transition-timing);
+}
+
+.animate-fade-out {
+  animation: fadeOut var(--transition-speed-base) var(--transition-timing);
+}
+
+.animate-slide-in-right {
+  animation: slideInRight var(--transition-speed-base) var(--transition-timing);
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft var(--transition-speed-base) var(--transition-timing);
+}
+
+.animate-slide-in-up {
+  animation: slideInUp var(--transition-speed-base) var(--transition-timing);
+}
+
+.animate-slide-in-down {
+  animation: slideInDown var(--transition-speed-base) var(--transition-timing);
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite var(--transition-timing);
+}
+
+.animate-spin {
+  animation: spin 1s infinite linear;
+}
+
+.animate-bounce {
+  animation: bounce 2s infinite var(--transition-timing);
+}
+
+/* Classes de atraso */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Classes de duração */
+.duration-fast {
+  animation-duration: var(--transition-speed-fast);
+}
+
+.duration-base {
+  animation-duration: var(--transition-speed-base);
+}
+
+.duration-slow {
+  animation-duration: var(--transition-speed-slow);
+}
+
+/* Classes de easing */
+.ease-linear {
+  animation-timing-function: linear;
+}
+
+.ease-in {
+  animation-timing-function: ease-in;
+}
+
+.ease-out {
+  animation-timing-function: ease-out;
+}
+
+.ease-in-out {
+  animation-timing-function: ease-in-out;
+}
+
+/* Efeitos de hover e foco */
+.hover-grow {
+  transition: transform var(--transition-speed-fast) var(--transition-timing);
+}
+
+.hover-grow:hover,
+.hover-grow:focus {
+  transform: scale(1.05);
+}
+
+.hover-shadow {
+  transition: box-shadow var(--transition-speed-fast) var(--transition-timing);
+}
+
+.hover-shadow:hover,
+.hover-shadow:focus {
+  box-shadow: var(--shadow);
+}
+
+/* Animações para elementos específicos */
+.btn {
+  transition: all var(--transition-speed-fast) var(--transition-timing);
+}
+
+.feature-icon {
+  transition: transform var(--transition-speed-base) var(--transition-timing);
+}
+
+.feature-card:hover .feature-icon {
+  transform: translateY(-5px);
+}
+
+.social-link {
+  transition: transform var(--transition-speed-fast) var(--transition-timing),
+    color var(--transition-speed-fast) var(--transition-timing);
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+}

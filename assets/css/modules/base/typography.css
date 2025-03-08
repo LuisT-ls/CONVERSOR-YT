@@ -1,0 +1,261 @@
+/* 
+* Conversor YouTube - Tipografia
+* Estilos para textos, títulos e outros elementos tipográficos
+*/
+
+/* Títulos */
+h1,
+.h1 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-4);
+}
+
+h2,
+.h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-3);
+}
+
+h3,
+.h3 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--spacing-2);
+}
+
+h4,
+.h4 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-2);
+}
+
+h5,
+.h5 {
+  font-size: var(--font-size-base);
+  margin-bottom: var(--spacing-2);
+}
+
+h6,
+.h6 {
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-2);
+}
+
+/* Parágrafos e texto */
+p {
+  margin-bottom: var(--spacing-4);
+}
+
+.lead {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-loose);
+}
+
+.small,
+small {
+  font-size: 85%;
+  font-weight: var(--font-weight-normal);
+}
+
+.text-muted {
+  color: var(--color-gray);
+}
+
+/* Alinhamento de texto */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* Transformação de texto */
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+/* Estilos de fonte */
+.font-weight-light {
+  font-weight: var(--font-weight-light);
+}
+
+.font-weight-normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.font-weight-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-weight-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-weight-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.font-italic {
+  font-style: italic;
+}
+
+/* Altura da linha */
+.line-height-tight {
+  line-height: var(--line-height-tight);
+}
+
+.line-height-base {
+  line-height: var(--line-height-base);
+}
+
+.line-height-loose {
+  line-height: var(--line-height-loose);
+}
+
+/* Cores de texto */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-info {
+  color: var(--color-info);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-danger {
+  color: var(--color-danger);
+}
+
+.text-light {
+  color: var(--color-white-dark);
+}
+
+.text-dark {
+  color: var(--color-dark);
+}
+
+.text-white {
+  color: var(--color-white);
+}
+
+/* Espaçamento de texto */
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-break {
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
+/* Listas */
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline {
+  padding-left: 0;
+  list-style: none;
+}
+
+.list-inline-item {
+  display: inline-block;
+}
+
+.list-inline-item:not(:last-child) {
+  margin-right: var(--spacing-3);
+}
+
+/* Links */
+.link-unstyled {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link-unstyled:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Títulos de seção */
+.section-title {
+  position: relative;
+  margin-bottom: var(--spacing-8);
+  text-align: center;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-pill);
+}
+
+/* Destaques */
+.highlight {
+  background-color: var(--color-warning-light);
+  padding: 0.25em 0.4em;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Blockquote */
+blockquote {
+  margin: 0 0 var(--spacing-4);
+  padding: var(--spacing-4) var(--spacing-5);
+  border-left: var(--border-width-thick) solid var(--color-gray-light);
+  font-style: italic;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+blockquote footer {
+  display: block;
+  font-size: 80%;
+  color: var(--color-gray);
+}
+
+blockquote footer::before {
+  content: '\2014\00A0'; /* em dash, então espaço */
+}

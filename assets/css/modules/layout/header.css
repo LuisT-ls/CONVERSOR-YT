@@ -1,11 +1,20 @@
-/* assets/css/modules/layout/header.css */
+/* 
+* Conversor YouTube - Cabeçalho
+* Estilos para o cabeçalho do site
+*/
 
 .site-header {
-  background: linear-gradient(135deg, var(--dark) 0%, var(--dark-gray) 100%);
-  padding: 2rem 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-secondary-dark) 0%,
+    var(--color-secondary) 100%
+  );
+  color: var(--color-white);
+  padding: var(--spacing-8) var(--spacing-4);
+  text-align: center;
   position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow);
+  z-index: var(--z-1);
 }
 
 .site-header::before {
@@ -13,72 +22,105 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-  opacity: 0.5;
-}
-
-.site-header .container {
-  position: relative;
-  z-index: 1;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="%23ffffff10" d="M15.75 8l-3.75 3.75-3.75-3.75-3.75 3.75v-7.5h11.25z"/></svg>');
+  background-size: 100px 100px;
+  opacity: 0.1;
+  pointer-events: none;
 }
 
 .site-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  position: relative;
-  display: inline-block;
-}
-
-.site-title::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background-color: var(--primary);
-  border-radius: 3px;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-2);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .site-title i {
-  vertical-align: middle;
-  margin-right: 10px;
-  font-size: 2.75rem;
+  color: var(--color-youtube);
+  margin-right: var(--spacing-2);
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .site-description {
-  font-size: 1.2rem;
-  max-width: 600px;
-  margin: 1rem auto 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-light);
+  margin-bottom: 0;
   opacity: 0.9;
 }
 
-/* Animação para o ícone YouTube no header */
-.youtube-icon {
-  display: inline-block;
-  animation: pulse 2s infinite;
-}
-
-/* Adicionar um leve gradiente que se move */
-.header-gradient {
-  position: absolute;
+/* Versão fixa para rolagem */
+.site-header.fixed {
+  position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  padding: var(--spacing-4) 0;
+  transition: padding var(--transition-speed-base) var(--transition-timing);
+}
+
+.site-header.fixed .site-title {
+  font-size: var(--font-size-2xl);
+  transition: font-size var(--transition-speed-base) var(--transition-timing);
+}
+
+.site-header.fixed .site-description {
+  font-size: var(--font-size-base);
+  transition: font-size var(--transition-speed-base) var(--transition-timing);
+}
+
+/* Efeito de tinta em tela */
+.ink-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ink-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
   width: 100%;
-  height: 5px;
+  height: 100%;
   background: linear-gradient(
     90deg,
-    var(--primary),
-    var(--secondary),
-    var(--accent),
-    var(--primary)
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
   );
-  background-size: 400% 400%;
-  animation: gradientAnimation 5s ease infinite;
+  animation: inkEffect 3s infinite;
+}
+
+@keyframes inkEffect {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .site-description {
+    font-size: var(--font-size-base);
+  }
+}
+
+@media (max-width: 576px) {
+  .site-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .site-header {
+    padding: var(--spacing-6) var(--spacing-3);
+  }
 }

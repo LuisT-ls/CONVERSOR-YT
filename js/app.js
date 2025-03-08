@@ -1,135 +1,165 @@
-// Importando módulos
-import {
-  validateYouTubeUrl,
-  extractVideoId,
-  getVideoInfo
-} from './modules/youtube.js'
-import { convertVideo } from './modules/converter.js'
-import { showError, showSuccess } from './modules/ui.js'
+/**
+ * Conversor YouTube - Script Principal
+ *
+ * Este é o arquivo JavaScript principal que inicializa a aplicação
+ * e coordena a interação entre os diferentes módulos.
+ */
 
-// Elementos DOM
-const form = document.getElementById('converter-form')
-const urlInput = document.getElementById('youtube-url')
-const pasteBtn = document.getElementById('paste-btn')
-const resultContainer = document.getElementById('result-container')
-const videoThumbnail = document.getElementById('video-thumbnail')
-const videoTitle = document.getElementById('video-title')
-const videoChannel = document.getElementById('video-channel')
-const conversionStatus = document.getElementById('conversion-status')
-const downloadContainer = document.getElementById('download-container')
-const downloadLink = document.getElementById('download-link')
-const qualitySelect = document.getElementById('quality-select')
-const errorModal = new bootstrap.Modal(document.getElementById('error-modal'))
-const errorMessage = document.getElementById('error-message')
+// Importar módulos
+import { UI } from './modules/ui.js'
+import { YouTube } from './modules/youtube.js'
+import { Converter } from './modules/converter.js'
 
-// Event listeners
-document.addEventListener('DOMContentLoaded', () => {
-  // Botão de colar link
-  pasteBtn.addEventListener('click', async () => {
+class App {
+  constructor() {
+    // Inicializar módulos
+    this.ui = new UI()
+    this.youtube = new YouTube()
+    this.converter = new Converter()
+
+    // Vincular métodos para manter o contexto
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.handlePasteButton = this.handlePasteButton.bind(this)
+    this.handleDownload = this.handleDownload.bind(this)
+    this.handleFormatChange = this.handleFormatChange.bind(this)
+    this.init = this.init.bind(this)
+
+    // Inicializar a aplicação
+    this.init()
+  }
+
+  /**
+   * Inicializa a aplicação e configura os event listeners
+   */
+  init() {
+    // Evento de envio do formulário
+    document
+      .getElementById('converter-form')
+      .addEventListener('submit', this.handleFormSubmit)
+
+    // Evento do botão de colar
+    document
+      .getElementById('paste-btn')
+      .addEventListener('click', this.handlePasteButton)
+
+    // Evento de alteração de formato
+    const formatRadios = document.querySelectorAll('input[name="format"]')
+    formatRadios.forEach(radio => {
+      radio.addEventListener('change', this.handleFormatChange)
+    })
+
+    // Inicializar UI
+    this.ui.initThemeToggle()
+    this.ui.initAnimations()
+
+    // Verificar modo escuro do sistema
+    this.ui.checkSystemTheme()
+
+    // Iniciar com foco no campo de URL
+    document.getElementById('youtube-url').focus()
+
+    console.log('App initialized successfully')
+  }
+
+  /**
+   * Manipula o envio do formulário de conversão
+   * @param {Event} event - O evento de submit do formulário
+   */
+  async handleFormSubmit(event) {
+    event.preventDefault()
+
+    // Obter valores do formulário
+    const youtubeUrl = document.getElementById('youtube-url').value
+    const format = document.querySelector('input[name="format"]:checked').value
+    const quality = document.getElementById('quality-select').value
+
+    // Validar URL
+    if (!this.youtube.validateUrl(youtubeUrl)) {
+      this.ui.showError(
+        'URL inválida. Por favor, insira um link do YouTube válido.'
+      )
+      return
+    }
+
     try {
-      const text = await navigator.clipboard.readText()
-      urlInput.value = text.trim()
-      // Validar imediatamente após colar
-      if (validateYouTubeUrl(urlInput.value)) {
-        fetchVideoInfo(urlInput.value)
-      }
+      // Mostrar área de resultado e status de conversão
+      this.ui.showResultContainer()
+      this.ui.updateConversionStatus(
+        'Obtendo informações do vídeo...',
+        'loading'
+      )
+
+      // Obter informações do vídeo
+      const videoInfo = await this.youtube.getVideoInfo(youtubeUrl)
+
+      // Atualizar interface com informações do vídeo
+      this.ui.updateVideoInfo(videoInfo)
+
+      // Iniciar processo de conversão
+      this.ui.updateConversionStatus('Convertendo vídeo...', 'loading')
+      const downloadUrl = await this.converter.convert(
+        youtubeUrl,
+        format,
+        quality
+      )
+
+      // Conversão concluída com sucesso
+      this.ui.updateConversionStatus(
+        'Conversão concluída com sucesso!',
+        'success'
+      )
+      this.ui.showDownloadButton(downloadUrl, `${videoInfo.title}.${format}`)
     } catch (error) {
-      showError(
-        'Não foi possível acessar a área de transferência. Por favor, cole o link manualmente.'
+      console.error('Error during conversion:', error)
+      this.ui.updateConversionStatus(
+        `Erro ao converter vídeo: ${error.message}`,
+        'error'
       )
     }
-  })
+  }
 
-  // Formulário de conversão
-  form.addEventListener('submit', handleFormSubmit)
-
-  // Validar URL ao sair do campo
-  urlInput.addEventListener('blur', () => {
-    if (urlInput.value && !validateYouTubeUrl(urlInput.value)) {
-      showError('Por favor, insira um link válido do YouTube.')
+  /**
+   * Manipula o clique no botão de colar
+   */
+  async handlePasteButton() {
+    try {
+      const text = await navigator.clipboard.readText()
+      document.getElementById('youtube-url').value = text
+    } catch (error) {
+      this.ui.showError(
+        'Não foi possível acessar a área de transferência. Por favor, verifique as permissões do navegador.'
+      )
     }
-  })
+  }
 
-  // Mostrar/esconder seletor de qualidade baseado no formato selecionado
-  document.querySelectorAll('input[name="format"]').forEach(radio => {
-    radio.addEventListener('change', e => {
-      const isAudioOnly = ['mp3', 'wav'].includes(e.target.value)
-      qualitySelect.parentElement.classList.toggle('d-none', isAudioOnly)
-    })
-  })
+  /**
+   * Manipula a alteração do formato selecionado
+   */
+  handleFormatChange(event) {
+    const format = event.target.value
+    const qualitySelect = document.getElementById('quality-select')
 
-  // Verificar inicialmente se é formato de áudio
-  const currentFormat = document.querySelector(
-    'input[name="format"]:checked'
-  ).value
-  qualitySelect.parentElement.classList.toggle(
-    'd-none',
-    ['mp3', 'wav'].includes(currentFormat)
-  )
+    // Mostrar ou ocultar seleção de qualidade com base no formato
+    if (format === 'mp3' || format === 'wav') {
+      qualitySelect.parentElement.style.display = 'none'
+    } else {
+      qualitySelect.parentElement.style.display = 'block'
+    }
+  }
+
+  /**
+   * Manipula o clique no botão de download
+   */
+  handleDownload() {
+    // Registrar estatísticas de download ou eventos de análise aqui
+    console.log('Download initiated')
+  }
+}
+
+// Inicializar a aplicação quando o DOM estiver completamente carregado
+document.addEventListener('DOMContentLoaded', () => {
+  const app = new App()
 })
 
-// Buscar informações do vídeo ao inserir URL
-async function fetchVideoInfo(url) {
-  try {
-    const videoId = extractVideoId(url)
-    if (!videoId) return
-
-    const videoInfo = await getVideoInfo(videoId)
-    if (videoInfo) {
-      videoThumbnail.src = videoInfo.thumbnail
-      videoTitle.textContent = videoInfo.title
-      videoChannel.textContent = videoInfo.channel
-    }
-  } catch (error) {
-    console.error('Erro ao buscar informações do vídeo:', error)
-  }
-}
-
-// Processar envio do formulário
-async function handleFormSubmit(e) {
-  e.preventDefault()
-
-  const youtubeUrl = urlInput.value.trim()
-  if (!validateYouTubeUrl(youtubeUrl)) {
-    showError('Por favor, insira um link válido do YouTube.')
-    return
-  }
-
-  const format = document.querySelector('input[name="format"]:checked').value
-  const quality = qualitySelect.value
-
-  // Exibir área de resultado
-  resultContainer.classList.remove('d-none')
-  conversionStatus.classList.remove('d-none')
-  downloadContainer.classList.add('d-none')
-
-  // Scroll para a área de resultado
-  resultContainer.scrollIntoView({ behavior: 'smooth' })
-
-  try {
-    // Buscar informações do vídeo (caso ainda não tenha sido feito)
-    if (!videoTitle.textContent) {
-      await fetchVideoInfo(youtubeUrl)
-    }
-
-    // Iniciar conversão
-    const result = await convertVideo(youtubeUrl, format, quality)
-
-    // Exibir link de download
-    conversionStatus.classList.add('d-none')
-    downloadContainer.classList.remove('d-none')
-    downloadLink.href = result.downloadUrl
-    downloadLink.download = result.filename
-
-    showSuccess('Conversão concluída com sucesso!')
-  } catch (error) {
-    conversionStatus.classList.add('d-none')
-    errorMessage.textContent =
-      error.message ||
-      'Ocorreu um erro durante a conversão. Por favor, tente novamente.'
-    errorModal.show()
-  }
-}
-
-// Exportar funções para uso em outros módulos
-export { showError }
+// Exportar a classe App para possível reutilização
+export { App }

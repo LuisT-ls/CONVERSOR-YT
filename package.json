@@ -1,0 +1,23 @@
+{
+  "name": "youtube-converter",
+  "version": "1.0.0",
+  "description": "Conversor de vídeos do YouTube",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "youtube",
+    "converter",
+    "download"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ytdl-core": "^4.11.5"
+  },
+  "devDependencies": {
+    "vercel": "^33.0.0"
+  }
+}

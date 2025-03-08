@@ -1,0 +1,88 @@
+/* 
+* Conversor YouTube - Estilização da barra de rolagem
+* Personalização da aparência das barras de rolagem
+*/
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray) var(--color-white-dark);
+}
+
+/* Chrome, Edge e Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color-white-dark);
+  border-radius: var(--border-radius-pill);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray);
+  border-radius: var(--border-radius-pill);
+  border: 2px solid var(--color-white-dark);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-gray-dark);
+}
+
+/* Modo escuro */
+[data-theme='dark'] * {
+  scrollbar-color: var(--color-gray-dark) var(--color-gray-darker);
+}
+
+[data-theme='dark'] *::-webkit-scrollbar-track {
+  background: var(--color-gray-darker);
+}
+
+[data-theme='dark'] *::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-dark);
+  border: 2px solid var(--color-gray-darker);
+}
+
+[data-theme='dark'] *::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-gray);
+}
+
+/* Esconder barras de rolagem em dispositivos móveis */
+@media (max-width: 768px) {
+  * {
+    scrollbar-width: none;
+  }
+
+  *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+}
+
+/* Personalização da barra de rolagem para elementos específicos */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-white-dark);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-white-dark);
+  border-radius: var(--border-radius-pill);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-pill);
+  border: 1px solid var(--color-white-dark);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary-dark);
+}

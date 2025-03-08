@@ -1,0 +1,197 @@
+/* 
+* Conversor YouTube - Modo Escuro
+* Estilos para o tema escuro da aplicação
+*/
+
+[data-theme='dark'] {
+  /* Cores de fundo e texto */
+  --body-bg: var(--color-gray-darker);
+  --body-color: var(--color-white-dark);
+  --heading-color: var(--color-white);
+}
+
+/* Estilos de tema escuro */
+[data-theme='dark'] {
+  /* Cabeçalho */
+  .site-header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+  }
+
+  /* Cards e containers */
+  .card,
+  .converter-card,
+  .result-card,
+  .feature-card {
+    background-color: var(--color-gray-dark);
+    border: 1px solid var(--color-gray);
+  }
+
+  /* Form elements */
+  .form-control,
+  .quality-select {
+    background-color: var(--color-gray-darker);
+    border-color: var(--color-gray);
+    color: var(--color-white-dark);
+  }
+
+  .form-control:focus,
+  .quality-select:focus {
+    background-color: var(--color-gray-darker);
+    border-color: rgba(var(--color-primary-rgb), 0.6);
+    color: var(--color-white);
+  }
+
+  .input-group-text {
+    background-color: var(--color-gray);
+    border-color: var(--color-gray);
+    color: var(--color-white-dark);
+  }
+
+  .form-label {
+    color: var(--color-white);
+  }
+
+  .form-text {
+    color: var(--color-gray-light);
+  }
+
+  /* Radio format options */
+  .format-label {
+    background-color: var(--color-gray-darker);
+    border-color: var(--color-gray);
+    color: var(--color-white-dark);
+  }
+
+  .format-label:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .format-input:checked + .format-label {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+  }
+
+  /* Media info */
+  .media-title {
+    color: var(--color-white);
+  }
+
+  .media-channel {
+    color: var(--color-gray-light);
+  }
+
+  /* Features */
+  .features-section {
+    background-color: var(--color-gray-darker);
+  }
+
+  .feature-icon {
+    background-color: rgba(var(--color-primary-rgb), 0.2);
+  }
+
+  .feature-title {
+    color: var(--color-white);
+  }
+
+  .feature-description {
+    color: var(--color-gray-light);
+  }
+
+  /* Modal */
+  .modal-content {
+    background-color: var(--color-gray-dark);
+  }
+
+  .modal-body {
+    color: var(--color-white-dark);
+  }
+
+  .modal-footer {
+    background-color: var(--color-gray-darker);
+    border-top-color: var(--color-gray);
+  }
+
+  /* Scrollbar - já definido no scrollbar.css */
+
+  /* Progress */
+  .progress {
+    background-color: var(--color-gray);
+  }
+
+  /* Skeleton */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      var(--color-gray) 0%,
+      var(--color-gray-dark) 50%,
+      var(--color-gray) 100%
+    );
+  }
+
+  /* Botão toggle de tema */
+  .theme-toggle {
+    background-color: var(--color-gray-darker);
+    color: var(--color-white);
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--color-gray-dark);
+  }
+
+  .theme-toggle .moon-icon {
+    display: none;
+  }
+
+  .theme-toggle .sun-icon {
+    display: inline-block;
+  }
+}
+
+/* Botão de toggle de tema */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  color: var(--color-dark);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  z-index: var(--z-5);
+  transition: all var(--transition-speed-base) var(--transition-timing);
+}
+
+.theme-toggle:hover {
+  transform: rotate(30deg);
+}
+
+.theme-toggle .sun-icon {
+  display: none;
+}
+
+.theme-toggle .moon-icon {
+  display: inline-block;
+}
+
+/* Animação de transição de tema */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Preferência de tema do sistema */
+@media (prefers-color-scheme: dark) {
+  body:not([data-theme='light']) {
+    --body-bg: var(--color-gray-darker);
+    --body-color: var(--color-white-dark);
+    --heading-color: var(--color-white);
+  }
+}

@@ -1,0 +1,292 @@
+/* 
+* Conversor YouTube - Loading
+* Estilos para indicadores de carregamento e progresso
+*/
+
+/* Loader circular */
+.loader {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(var(--color-primary-rgb), 0.3);
+  border-radius: 50%;
+  border-top-color: var(--color-primary);
+  animation: spin 1s linear infinite;
+}
+
+.loader-sm {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.loader-lg {
+  width: 50px;
+  height: 50px;
+  border-width: 4px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loader de pulso */
+.loader-pulse {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 20px;
+}
+
+.loader-pulse div {
+  position: absolute;
+  top: 8px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.loader-pulse div:nth-child(1) {
+  left: 8px;
+  animation: loader-pulse1 0.6s infinite;
+}
+
+.loader-pulse div:nth-child(2) {
+  left: 8px;
+  animation: loader-pulse2 0.6s infinite;
+}
+
+.loader-pulse div:nth-child(3) {
+  left: 32px;
+  animation: loader-pulse2 0.6s infinite;
+}
+
+.loader-pulse div:nth-child(4) {
+  left: 56px;
+  animation: loader-pulse3 0.6s infinite;
+}
+
+@keyframes loader-pulse1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loader-pulse2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+@keyframes loader-pulse3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+/* Barra de progresso */
+.progress {
+  height: 8px;
+  background-color: var(--color-gray-lighter);
+  border-radius: var(--border-radius-pill);
+  overflow: hidden;
+  position: relative;
+  margin: var(--spacing-4) 0;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-pill);
+  transition: width 0.3s ease;
+}
+
+.progress-bar-striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+}
+
+.progress-bar-animated {
+  animation: progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+  from {
+    background-position: 1rem 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+/* Cores para barras de progresso */
+.progress-success .progress-bar {
+  background-color: var(--color-success);
+}
+
+.progress-info .progress-bar {
+  background-color: var(--color-info);
+}
+
+.progress-warning .progress-bar {
+  background-color: var(--color-warning);
+}
+
+.progress-danger .progress-bar {
+  background-color: var(--color-danger);
+}
+
+/* Spinner de texto */
+.dots-loader {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  height: 20px;
+}
+
+.dots-loader::after {
+  content: '...';
+  font-weight: bold;
+  animation: dots 1.5s infinite;
+}
+
+@keyframes dots {
+  0%,
+  20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%,
+  100% {
+    content: '...';
+  }
+}
+
+/* Indicador de loading em estilo esqueleto */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-lighter) 0%,
+    var(--color-white-dark) 50%,
+    var(--color-gray-lighter) 100%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: var(--border-radius);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-text {
+  height: 0.8em;
+  margin-bottom: 0.5em;
+  border-radius: var(--border-radius-pill);
+}
+
+.skeleton-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.skeleton-thumbnail {
+  width: 120px;
+  height: 68px;
+  border-radius: var(--border-radius);
+}
+
+/* Indicador de loading para o conversor */
+.conversion-status .loader-container {
+  display: flex;
+  align-items: center;
+  color: var(--color-info);
+}
+
+.conversion-status.success {
+  background-color: rgba(var(--color-success-rgb), 0.1);
+  border-left-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.conversion-status.error {
+  background-color: rgba(var(--color-danger-rgb), 0.1);
+  border-left-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+/* Overlay de loading */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(var(--color-dark-rgb), 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: var(--z-max);
+  backdrop-filter: blur(3px);
+}
+
+.loading-overlay .loader {
+  width: 60px;
+  height: 60px;
+  border-width: 5px;
+  margin-bottom: var(--spacing-4);
+}
+
+.loading-text {
+  color: var(--color-white);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+  .loading-overlay .loader {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+  }
+
+  .loading-text {
+    font-size: var(--font-size-base);
+  }
+}

@@ -43,23 +43,26 @@ export default async function handler(req, res) {
         };
 
         if (process.env.YOUTUBE_COOKIES) {
-          console.log('Found YOUTUBE_COOKIES env var, length:', process.env.YOUTUBE_COOKIES.length);
           try {
             const cookies = process.env.YOUTUBE_COOKIES.split(';').map(c => {
               const [key, ...v] = c.trim().split('=');
               return { name: key, value: v.join('=') };
             });
             agentOptions.cookies = cookies;
-            console.log('Parsed cookies count:', cookies.length);
           } catch (e) {
             console.error('Error parsing cookies:', e);
           }
-        } else {
-          console.log('YOUTUBE_COOKIES env var is missing or empty');
         }
 
         const agent = ytdl.createAgent(agentOptions.cookies || []);
-        info = await ytdl.getInfo(url, { agent });
+        info = await ytdl.getInfo(url, {
+          agent,
+          requestOptions: {
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            }
+          }
+        });
         break // Se bem-sucedido, saia do loop
       } catch (error) {
         lastError = error

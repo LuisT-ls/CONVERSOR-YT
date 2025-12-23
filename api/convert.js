@@ -35,16 +35,25 @@ export default async function handler(req, res) {
     }
 
     // Obter informações do vídeo
-    const requestOptions = {}
+    const agentOptions = {
+      keepAlive: true,
+      keepAliveMsecs: 500,
+    };
+
     if (process.env.YOUTUBE_COOKIES) {
-      requestOptions.requestOptions = {
-        headers: {
-          Cookie: process.env.YOUTUBE_COOKIES
-        }
+      try {
+        const cookies = process.env.YOUTUBE_COOKIES.split(';').map(c => {
+          const [key, ...v] = c.trim().split('=');
+          return { name: key, value: v.join('=') };
+        });
+        agentOptions.cookies = cookies;
+      } catch (e) {
+        console.error('Error parsing cookies:', e);
       }
     }
 
-    const info = await ytdl.getInfo(url, requestOptions)
+    const agent = ytdl.createAgent(agentOptions.cookies || []);
+    const info = await ytdl.getInfo(url, { agent });
 
     // Obter formato baseado na seleção do usuário
     const formatOptions = getFormatOptions(format, quality, info)

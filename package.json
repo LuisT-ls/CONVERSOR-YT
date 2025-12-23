@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Conversor de vídeos do YouTube",
   "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Static build'"
+  },
   "dependencies": {
     "ytdl-core": "^4.11.5"
   },

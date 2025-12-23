@@ -1,5 +1,5 @@
 // api/video-info.js
-import ytdl from 'ytdl-core'
+import ytdl from '@distube/ytdl-core'
 
 export default async function handler(req, res) {
   // Configurar CORS
@@ -74,8 +74,8 @@ export default async function handler(req, res) {
       thumbnailUrl:
         info.videoDetails.thumbnails.length > 0
           ? info.videoDetails.thumbnails[
-              info.videoDetails.thumbnails.length - 1
-            ].url
+            info.videoDetails.thumbnails.length - 1
+          ].url
           : `https://i.ytimg.com/vi/${info.videoDetails.videoId}/hqdefault.jpg`,
       formats: info.formats.map(format => ({
         itag: format.itag,

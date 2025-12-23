@@ -8,7 +8,7 @@
     "build": "echo 'Static build'"
   },
   "dependencies": {
-    "ytdl-core": "^4.11.5"
+    "@distube/ytdl-core": "^4.16.4"
   },
   "engines": {
     "node": ">=16.x"

@@ -1,5 +1,5 @@
 // api/convert.js
-import ytdl from 'ytdl-core'
+import ytdl from '@distube/ytdl-core'
 
 export default async function handler(req, res) {
   // Configurar CORS

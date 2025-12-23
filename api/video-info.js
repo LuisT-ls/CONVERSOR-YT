@@ -37,7 +37,16 @@ export default async function handler(req, res) {
     while (attempt < maxAttempts) {
       try {
         // Obter informações básicas do vídeo
-        info = await ytdl.getInfo(url)
+        const requestOptions = {}
+        if (process.env.YOUTUBE_COOKIES) {
+          requestOptions.requestOptions = {
+            headers: {
+              Cookie: process.env.YOUTUBE_COOKIES
+            }
+          }
+        }
+
+        info = await ytdl.getInfo(url, requestOptions)
         break // Se bem-sucedido, saia do loop
       } catch (error) {
         lastError = error

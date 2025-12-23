@@ -35,7 +35,16 @@ export default async function handler(req, res) {
     }
 
     // Obter informações do vídeo
-    const info = await ytdl.getInfo(url)
+    const requestOptions = {}
+    if (process.env.YOUTUBE_COOKIES) {
+      requestOptions.requestOptions = {
+        headers: {
+          Cookie: process.env.YOUTUBE_COOKIES
+        }
+      }
+    }
+
+    const info = await ytdl.getInfo(url, requestOptions)
 
     // Obter formato baseado na seleção do usuário
     const formatOptions = getFormatOptions(format, quality, info)
